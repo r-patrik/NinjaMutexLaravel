@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use NinjaMutex\Lock\LockInterface;
 use NinjaMutex\Lock\MemcachedLock;
 use NinjaMutex\MutexFabric;
+use PaddyHu\NinjaMutexLaravel\Facade\NinjaMutex;
 
 class NinjaMutexServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,7 @@ class NinjaMutexServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'ninjaMutex');
 
-        $this->app->singleton('Mutex', function($app)
+        $this->app->singleton('NinjaMutex', function($app)
         {
             $config = $app['config']->get('ninjaMutex');
 
@@ -37,6 +38,8 @@ class NinjaMutexServiceProvider extends ServiceProvider
 
             return new MutexFabric($config["driver"], $lockImplementor);
         });
+
+        $this->app->alias("NinjaMutex", NinjaMutex::class);
     }
 
     /**
@@ -59,5 +62,10 @@ class NinjaMutexServiceProvider extends ServiceProvider
         }
 
         return $lockImplementor;
+    }
+
+    public function provides()
+    {
+        return ['ninjaMutex'];
     }
 }
