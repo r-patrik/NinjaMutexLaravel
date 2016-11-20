@@ -1,0 +1,22 @@
+{
+  "name": "paddyhu/ninja-mutex-laravel",
+  "description": "Laravel implementation of ninja mutex library",
+  "license": "MIT",
+  "keywords": [],
+  "authors": [
+    {
+      "name": "Patrik Rozgonyi",
+      "email": "secret@gmail.com"
+    }
+  ],
+  "require": {
+    "arvenil/ninja-mutex": "*"
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "PaddyHu\\NinjaMutexLaravel\\": "src"
+    }
+  }
+}
