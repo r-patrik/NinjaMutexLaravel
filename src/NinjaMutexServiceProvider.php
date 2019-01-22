@@ -49,7 +49,7 @@ class NinjaMutexServiceProvider extends ServiceProvider
         switch ($config["driver"]) {
             case "memcached":
                 $memcached = new \Memcached();
-                $memcached->addServers($config["storage"]["memcached"]["servers"]);
+                $memcached->addServers(config("cache.stores.memcached.servers"));
                 $lockImplementor = new MemcachedLock($memcached);
                 $lockImplementor->setExpiration(4);
                 break;
